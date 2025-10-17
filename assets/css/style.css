@@ -48,7 +48,8 @@ body {
   background-color: #24272b; /* Even darker shade for the card body */
   line-height: 1.6; /* More readable line spacing */
 }
-.card-body img {
+
+.card img {
   height: 160px;
 }
 
