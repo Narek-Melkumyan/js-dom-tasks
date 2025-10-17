@@ -46,8 +46,10 @@ body {
   line-height: 1.6; /* More readable line spacing */
 }
 .card{
+  height: 100%;
   img{
     height: 160px;
+    object-fit: cover;
   }
 }
 .card-body p {
