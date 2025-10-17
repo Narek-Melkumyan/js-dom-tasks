@@ -44,6 +44,9 @@ body {
 .card-body {
   background-color: #24272b; /* Even darker shade for the card body */
   line-height: 1.6; /* More readable line spacing */
+  img{
+    height: 160px;
+  }
 }
 
 .card-body p {
