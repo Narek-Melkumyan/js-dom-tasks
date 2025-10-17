@@ -6,13 +6,17 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #1a1a1a; /* Dark background for the overall page */
+  /* Dark background for the overall page */
   color: #f8f9fa; /* Light color for text for better readability */
 }
 
 /* Customizing container */
 .container {
   padding-top: 20px; /* Adds space on the top of the container */
+}
+
+.v-dark {
+  background-color: #1a1a1a;
 }
 
 /* Profile card styles */
@@ -104,6 +108,14 @@ li {
   /* Offset content to the right of the sidebar */
   overflow-y: auto; /* Enable scrolling on the content */
   height: 100vh; /* Full viewport height */
+}
+
+#lamp {
+  position: fixed;
+  right: 10px;
+  top: 20%;
+  width: 50px;
+  cursor: pointer;
 }
 
 /* Responsive adjustments */

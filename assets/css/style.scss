@@ -5,7 +5,7 @@
 }
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #1a1a1a; /* Dark background for the overall page */
+  /* Dark background for the overall page */
   color: #f8f9fa; /* Light color for text for better readability */
 }
 
@@ -13,7 +13,9 @@ body {
 .container {
   padding-top: 20px; /* Adds space on the top of the container */
 }
-
+.v-dark{
+  background-color: #1a1a1a;
+}
 /* Profile card styles */
 .profile-card {
   background-color: #2c2f33; /* Darker shade for the profile card */
@@ -104,7 +106,13 @@ li {
   overflow-y: auto; /* Enable scrolling on the content */
   height: 100vh; /* Full viewport height */
 }
-
+#lamp{
+  position: fixed;
+  right: 10px;
+  top: 20%;
+  width: 50px;
+  cursor: pointer;
+}
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .fixed-left-sidebar {
