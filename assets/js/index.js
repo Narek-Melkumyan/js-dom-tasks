@@ -1,27 +1,34 @@
 
+function switchLamp(){
+    const themeEl=document.querySelector("#theme")
+    const lampEl= document.querySelector("#lamp")
+    if(localStorage["theme"] === "v-dark"){
+        themeEl.classList.add("v-dark")
+        lampEl.src = "./assets/images/on.png"
+    }else{
+        themeEl.classList.remove("v-dark")
+        lampEl.src = "./assets/images/off.png"
+    }
 
-if(localStorage["theme"] === "v-dark"){
-    document.querySelector("#theme").classList.add("v-dark")
-    document.querySelector("#lamp").src = "./assets/images/on.png"
-}else{
-    document.querySelector("#theme").classList.remove("v-dark")
-    document.querySelector("#lamp").src = "./assets/images/off.png"
+
+
+    lampEl.onclick = () => {
+        if(lampEl.src.includes('off.png')){
+            lampEl.src='./assets/images/on.png'
+        }else{
+            lampEl.src='./assets/images/off.png'
+        }
+        if(themeEl.classList.contains("v-dark")){
+            themeEl.classList.remove("v-dark")
+            localStorage["theme"] = "light"
+
+        }else{
+            themeEl.classList.add("v-dark")
+            localStorage["theme"] = "v-dark"
+        }
+    }
 }
 
-
-
-document.querySelector('#lamp').onclick = (e) => {
-    if(e.target.src.includes('off.png')){
-        e.target.src='./assets/images/on.png'
-    }else{
-        e.target.src='./assets/images/off.png'
-    }
-    if(document.querySelector('#theme').classList.contains("v-dark")){
-        document.querySelector("#theme").classList.remove("v-dark")
-        localStorage["theme"] = "light"
-
-    }else{
-        document.querySelector("#theme").classList.add("v-dark")
-        localStorage["theme"] = "v-dark"
-    }
-}
+document.addEventListener('DOMContentLoaded', function (){
+    switchLamp()
+})
