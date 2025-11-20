@@ -78,19 +78,24 @@ function randomWord(val){
 wordElm.innerText = randomWord(animals[i].label)
 
 function check(){
+
+    if(inputElm.value.length!==animals[i].label.length){
+        errorMessage("sxal qanak")
+        return
+    }
+    errorMessage("",true)
     if(inputElm.value.toLowerCase() === animals[i].label.toLowerCase()){
         score.success++;
 
-
     }else {
-
         score.wrong++
+
     }
+    inputElm.value=''
     if((score.success + score.wrong) === 10){
         return gameOver()
     }
     i++
-
     wordElm.innerText = randomWord(animals[i].label)
 
 }
@@ -119,4 +124,19 @@ document.querySelector("#new-game").onclick = function(){
     animals.sort(() => Math.random() - 0.3 );
     wordElm.innerText = randomWord(animals[i].label)
     document.querySelector("#game-over").classList.add("d-none")
+}
+
+
+function errorMessage(msg='error...',status=false){
+    const wordInputError=document.querySelector("#word-input-error");
+    if(status){
+        wordInputError.classList.replace("invalid-feedback",'valid-feedback')
+        inputElm.classList.remove("is-invalid")
+        return
+    }
+    wordInputError.classList.replace("valid-feedback","invalid-feedback")
+    inputElm.classList.add("is-invalid")
+    wordInputError.innerHTML=msg
+
+
 }

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Animal Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="game-container">
+    <div class="game-board"></div>
+    <div class="side-panel">
+        <div class="timer">⏰ 1:20</div>
+        <div class="current-animal" id="current-animal">
+            <img src="./animal/kow.png" alt="Zebra">
+            <h2>ZEBRA</h2>
+        </div>
+        <div class="score">Score: 0</div>
+    </div>
+</div>
+<div class="game-over d-none">
+    <div class="game-over-text">
+        <h2>Game Over</h2>
+        <p id = "game-over-score">Score 0</p>
+        <div class="restart-button-container">
+            <button id="restart">Restart</button>
+        </div>
+    </div>
+</div>
+<script>
+    let animals = [
+        { id: 1,  name: "Bee",          thumbImg: "bee.png",          sound: "bee.mp3" },
+        { id: 2,  name: "Beaver",       thumbImg: "getadzi.png",      sound: "getadzi.mp3" },
+        { id: 3,  name: "Hippopotamus", thumbImg: "begemontik.png",   sound: "begemontik.mp3" },
+        { id: 4,  name: "Bull",         thumbImg: "bool.png",         sound: "bool.mp3" },
+        { id: 5,  name: "Butterfly",    thumbImg: "butfl.png",        sound: "butfl.mp3" },
+        { id: 6,  name: "Cat",          thumbImg: "cat.png",          sound: "cat.mp3" },
+        { id: 7,  name: "Sheep",        thumbImg: "cheep.png",        sound: "cheep.mp3" },
+        { id: 8,  name: "Chicken",      thumbImg: "chiken.png",       sound: "chiken.mp3" },
+        { id: 9,  name: "Sparrow",      thumbImg: "chxchik.png",      sound: "chxchik.mp3" },
+        { id: 10, name: "Crocodile",    thumbImg: "cocodalos.png",    sound: "cocodalos.mp3" },
+        { id: 11, name: "Dolphin",      thumbImg: "defin.png",        sound: "defin.mp3" },
+        { id: 12, name: "Dog",          thumbImg: "dog.png",          sound: "dog.mp3" },
+        { id: 13, name: "Elephant",     thumbImg: "elefent.png",      sound: "elefent.mp3" },
+        { id: 14, name: "Frog",         thumbImg: "frogy.png",        sound: "frogy.mp3" },
+        { id: 15, name: "Horse",        thumbImg: "hosrs.png",        sound: "hosrs.mp3" },
+        { id: 16, name: "Kangaroo",     thumbImg: "kenguru.png",      sound: "kenguru.mp3" },
+        { id: 17, name: "Cow",          thumbImg: "kow.png",          sound: "kow.mp3" },
+        { id: 18, name: "Turtle",       thumbImg: "kria.png",         sound: "kria.mp3" },
+        { id: 19, name: "Lion",         thumbImg: "lion.png",         sound: "lion.mp3" },
+        { id: 20, name: "Monkey",       thumbImg: "monkey.png",       sound: "monkey.mp3" },
+        { id: 21, name: "Mouse",        thumbImg: "mouse.png",        sound: "mouse.mp3" },
+        { id: 22, name: "Panda",        thumbImg: "panda.png",        sound: "panda.mp3" },
+        { id: 23, name: "Pig",          thumbImg: "pig.png",          sound: "pig.mp3" },
+        { id: 24, name: "Rabbit",       thumbImg: "rebbit.png",       sound: "rebbit.mp3" },
+        { id: 25, name: "Shark",        thumbImg: "shark.png",        sound: "shark.mp3" },
+        { id: 26, name: "Snake",        thumbImg: "snik.png",         sound: "snik.mp3" },
+        { id: 27, name: "Tiger",        thumbImg: "tiger.png",        sound: "tiger.mp3" },
+        { id: 28, name: "Spider",       thumbImg: "web.png",          sound: "web.mp3" },
+        { id: 29, name: "Zebra",        thumbImg: "zeber.png",        sound: "zeber.mp3" },
+        { id: 30, name: "Octopus",      thumbImg: "yndzuxt.png",      sound: "yndzuxt.mp3" }
+    ];
+
+
+
+</script>
+<script src="script.js"></script>
+
+</body>
+</html>
