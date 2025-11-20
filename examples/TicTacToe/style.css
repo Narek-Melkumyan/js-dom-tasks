@@ -1,0 +1,265 @@
+/* ===== Base ===== */
+:root{
+    --bg1:#3b82f6;
+    --bg2:#9333ea;
+    --ink:#1f2937;
+    --muted:#6b7280;
+    --shadow:0 10px 30px rgba(0,0,0,.18);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+    margin:0;
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    display:flex; align-items:center; justify-content:center;
+    padding: 24px;
+}
+
+/* ===== Start Popup (keep your HTML as-is) ===== */
+.start-game-container{
+    position:fixed; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    background: rgba(0,0,0,.45);
+    backdrop-filter: blur(8px);
+    animation: fadeIn .45s ease;
+    z-index: 10;
+}
+.start-game{
+    width:min(92vw, 360px);
+    background:#fff; color:var(--ink);
+    border-radius:20px;
+    padding: 32px 28px;
+    text-align:center;
+    box-shadow: var(--shadow);
+    animation: pop .35s ease;
+}
+.start-game h2{ font-size:24px; margin:0 0 8px }
+.start-game p{ font-size:14px; color:var(--muted); margin:6px 0 8px }
+
+#size-game{
+    width:100%;
+    padding:10px 12px;
+    border-radius:12px;
+    border:1px solid #e5e7eb;
+    background:#f9fafb;
+    font-weight:600;
+    outline:none;
+}
+
+.player-select{
+    display:flex; gap:12px; justify-content:center; margin: 10px 0 20px;
+}
+.player-select > div{
+    width:46px; height:46px; border-radius:50%;
+    display:grid; place-items:center; font-weight:800;
+    border:2px solid #cbd5e1; cursor:pointer;
+    transition:.2s;
+}
+.player-select > div.active{
+    background:#3b82f6; color:#fff; border-color:#3b82f6;
+    transform:scale(1.06);
+}
+
+.game-button-container button,
+#resetBtn{
+    padding:10px 18px;
+    border:none; border-radius:12px;
+    background:#3b82f6; color:#fff; font-weight:700;
+    cursor:pointer; transition:.2s;
+}
+.game-button-container button:hover,
+#resetBtn:hover{ filter:brightness(1.05); transform: translateY(-1px) }
+
+/* Optional: when you add .hide from JS, fade out overlay */
+.start-game-container.hide{ animation: fadeOut .35s ease forwards }
+@keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+@keyframes fadeOut{ to{opacity:0; visibility:hidden} }
+@keyframes pop{ from{transform:scale(.92); opacity:0} to{transform:scale(1); opacity:1} }
+
+/* ===== Game UI (your same markup) ===== */
+.game-ui{
+    width:min(92vw, 740px);
+    margin: 0 auto;
+    display:none; /* բացիր JS-ով, երբ սկսում է խաղը */
+}
+
+.status-bar{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px;
+    color:#fff;
+    padding:12px 14px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.28);
+    background: rgba(255,255,255,.16);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 6px 18px rgba(0,0,0,.15);
+    margin-bottom: 14px;
+}
+.pill{
+    padding:6px 12px; border-radius:999px;
+    border:1px solid rgba(255,255,255,.35);
+    background: rgba(255,255,255,.25);
+    font-weight:700;
+}
+
+/* ===== Board ===== */
+.board{
+    /* JS-ով դիր --size`ը՝ 3/4/5/6 */
+    --size: 3;
+    display:grid;
+    grid-template-columns: repeat(var(--size), 1fr);
+    gap: 12px;
+}
+.board .cell{
+    aspect-ratio: 1/1;
+    border-radius:16px;
+    background: rgba(255,255,255,.9);
+    box-shadow: 0 10px 24px rgba(0,0,0,.15), inset 0 0 0 1px rgba(0,0,0,.06);
+    display:grid; place-items:center;
+    font-weight:800; font-size: clamp(26px, 6.2vw, 44px);
+    color: var(--ink);
+    position:relative; overflow:hidden;
+    transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+    cursor:pointer;
+}
+.board .cell::after{
+    content:""; position:absolute; inset:0; opacity:0;
+    background: radial-gradient(120px 120px at var(--mx,50%) var(--my,50%), rgba(59,130,246,.12), transparent 60%);
+    transition: opacity .15s ease;
+}
+.board .cell:hover{ transform: translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,.20) }
+.board:has(.cell:hover) .cell:hover::after{ opacity:1 }
+
+.board .cell.filled{
+    background:#fff; cursor: default;
+}
+.board .cell.win{
+    background:#f0fdf4;
+    box-shadow: 0 0 0 2px #34d399 inset, 0 12px 26px rgba(52,211,153,.35);
+    animation: pulseWin .9s ease-in-out 2;
+}
+@keyframes pulseWin{
+    0%{transform:scale(1)} 50%{transform:scale(1.03)} 100%{transform:scale(1)}
+}
+
+/* ===== (Optional) remove placeholder matriX area if unused ===== */
+.matriX {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 520px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.card {
+    height: 100px;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #2d3250, #21243a);
+    box-shadow: inset 2px 2px 5px rgba(255,255,255,0.05),
+    5px 5px 15px rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    font-weight: 700;
+    color: #f4f4f4;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    background: linear-gradient(145deg, #3a3f68, #262a45);
+    color: #00d4ff;
+}
+#square{
+    padding: 5px 20px;
+    background: transparent;
+    color: white;
+
+}
+.game-end-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    animation: fadeIn 0.4s ease;
+}
+
+.end-game {
+    background: #ffffff;
+    color: #1f2937;
+    border-radius: 20px;
+    padding: 40px 50px;
+    text-align: center;
+    width: 320px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    animation: popIn 0.5s ease;
+}
+
+.end-game h2 {
+    font-size: 26px;
+    margin-bottom: 12px;
+}
+
+.end-game p {
+    font-size: 16px;
+    color: #4b5563;
+    margin-bottom: 20px;
+    background: #f9fafb;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.restart-game-button button {
+    padding: 10px 24px;
+    font-size: 16px;
+    background-color: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.restart-game-button button:hover {
+    background-color: #2563eb;
+    transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Optional hide animation */
+.game-end-container.hide {
+    animation: fadeOut 0.35s ease forwards;
+}
+@keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+}
+
+
+
+
+
+.d-none{
+    display: none !important;
+}
